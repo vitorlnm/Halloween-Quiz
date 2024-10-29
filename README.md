@@ -39,6 +39,25 @@ git clone https://github.com/vitorlnm/Halloween-Quiz.git
         </sub>
       </a>
     </td>
+
+<td align="center">
+      <a href="#" title="Felype Echer">
+        <img src="https://avatars.githubusercontent.com/u/127792707?v=4" width="100px;" alt="Felype"/><br>
+        <sub>
+          <b>Felype Echer</b>
+        </sub>
+      </a>
+    </td>
+
+<td align="center">
+      <a href="#" title="Luiz Bataioli">
+        <img src="https://avatars.githubusercontent.com/u/136658924?v=4" width="100px;" alt="Luiz"/><br>
+        <sub>
+          <b>Luiz Bataioli</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 
 </table>
+
