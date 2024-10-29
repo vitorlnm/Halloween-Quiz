@@ -1,4 +1,4 @@
-# 💻 Halloween-Quiz
+# 🎃 Halloween-Quiz
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/vitorlnm/Halloween-Quiz?style=for-the-badge)
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=COMPLETE&color=3CB371&style=for-the-badge)
