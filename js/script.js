@@ -23,25 +23,26 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let myChart;
 
 function loadQuestion() {
     const quizDiv = document.getElementById("quiz");
 
     if (quizDiv) {
-        quizDiv.innerHTML =`
+        quizDiv.innerHTML = `
             <div class="question">
                 <h2>${questions[currentQuestion].question}</h2>
                 <ul class="options">
-                    ${questions[currentQuestion].options.map((option) => 
+                    ${questions[currentQuestion].options.map((option) =>
                         `<li><button class="option-button" data-option="${option}">${option}</button></li>`
                     ).join("")}
                 </ul>
             </div>
             <p id="warning" style="color: red; display: none;">You need to select an answer to continue!</p>
-        `
+        `;
 
         document.querySelectorAll(".option-button").forEach(button => {
-            button.addEventListener("click", function() {
+            button.addEventListener("click", function () {
                 checkAnswer(this.getAttribute("data-option"));
             });
         });
@@ -71,10 +72,15 @@ function showResult() {
     document.getElementById("next-button").style.display = "none";
     document.getElementById("result").style.display = "block";
     document.getElementById("play-again").style.display = "inline-block";
-    
+
     const ctx = document.getElementById('myChart').getContext('2d');
     const incorrect = questions.length - score;
-    new Chart(ctx, {
+
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    myChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: ['Correct', 'Incorrect'],
