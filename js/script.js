@@ -21,6 +21,16 @@ const questions = [
     { question: "Which country celebrates the Day of the Dead in November?", options: ["Mexico", "Spain", "Brazil", "United States"], answer: "Mexico" },
 ];
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+shuffle(questions);
+
+const selectedQuestions = questions.slice(0, 15);
+
 let currentQuestion = 0;
 let score = 0;
 let myChart;
@@ -31,9 +41,9 @@ function loadQuestion() {
     if (quizDiv) {
         quizDiv.innerHTML = `
             <div class="question">
-                <h2>${questions[currentQuestion].question}</h2>
+                <h2>${selectedQuestions[currentQuestion].question}</h2>
                 <ul class="options">
-                    ${questions[currentQuestion].options.map((option) =>
+                    ${selectedQuestions[currentQuestion].options.map((option) =>
                         `<li><button class="option-button" data-option="${option}">${option}</button></li>`
                     ).join("")}
                 </ul>
@@ -52,7 +62,7 @@ function loadQuestion() {
 }
 
 function checkAnswer(selectedOption) {
-    if (selectedOption === questions[currentQuestion].answer) {
+    if (selectedOption === selectedQuestions[currentQuestion].answer) {
         score++;
     }
     nextQuestion();
@@ -60,7 +70,7 @@ function checkAnswer(selectedOption) {
 
 function nextQuestion() {
     currentQuestion++;
-    if (currentQuestion < questions.length) {
+    if (currentQuestion < selectedQuestions.length) {
         loadQuestion();
     } else {
         showResult();
@@ -74,7 +84,7 @@ function showResult() {
     document.getElementById("play-again").style.display = "inline-block";
 
     const ctx = document.getElementById('myChart').getContext('2d');
-    const incorrect = questions.length - score;
+    const incorrect = selectedQuestions.length - score;
 
     if (myChart) {
         myChart.destroy();
