@@ -30,7 +30,6 @@ function shuffle(array) {
 shuffle(questions);
 
 const selectedQuestions = questions.slice(0, 15);
-
 let currentQuestion = 0;
 let score = 0;
 let myChart;
@@ -62,11 +61,19 @@ function loadQuestion() {
 }
 
 function checkAnswer(selectedOption) {
-    const correctAudio = new Audio('./img/acerto.mp3');
+    const correctSounds = [
+        './img/acerto.mp3',
+        './img/acerto2.mp3',
+        './img/acerto3.mp3',
+        './img/acerto4.mp3',
+        './img/acerto5.mp3'
+    ];
     const wrongAudio = new Audio('./img/erro.mp3');
 
     if (selectedOption === selectedQuestions[currentQuestion].answer) {
         score++;
+        const randomSound = correctSounds[Math.floor(Math.random() * correctSounds.length)];
+        const correctAudio = new Audio(randomSound);
         correctAudio.play();
     } else {
         wrongAudio.play();
@@ -89,11 +96,6 @@ function jumpScare() {
     document.body.appendChild(scareImage);
 
     setTimeout(() => {
-        document.body.removeChild(scareImage);
-    }, 500);
-
-    setTimeout(() => {
-        clearInterval(interval);
         document.body.removeChild(scareImage);
     }, 500);
 }
@@ -140,7 +142,7 @@ function showResult() {
         }
     });
 
-    document.getElementById("score-text").innerText = score > 15 ? "You won! 🎉" : "You lost! Try again...";
+    document.getElementById("score-text").innerText = score >= 11 ? "You won! 🎉" : "You lost! Try again...";
 }
 
 function restartQuiz() {
