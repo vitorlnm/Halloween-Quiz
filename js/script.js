@@ -62,10 +62,40 @@ function loadQuestion() {
 }
 
 function checkAnswer(selectedOption) {
+    const correctAudio = new Audio('./img/acerto.mp3');
+    const wrongAudio = new Audio('./img/erro.mp3');
+
     if (selectedOption === selectedQuestions[currentQuestion].answer) {
         score++;
+        correctAudio.play();
+    } else {
+        wrongAudio.play();
+        jumpScare();
     }
     nextQuestion();
+}
+
+function jumpScare() {
+    const scareImage = document.createElement("img");
+    scareImage.src = "./img/felype.png";
+    scareImage.style.position = "fixed";
+    scareImage.style.top = "0";
+    scareImage.style.left = "0";
+    scareImage.style.width = "100vw";
+    scareImage.style.aspectRatio = "16 / 9";
+    scareImage.style.height = "100vh";
+    scareImage.style.zIndex = "9999";
+
+    document.body.appendChild(scareImage);
+
+    setTimeout(() => {
+        document.body.removeChild(scareImage);
+    }, 500);
+
+    setTimeout(() => {
+        clearInterval(interval);
+        document.body.removeChild(scareImage);
+    }, 500);
 }
 
 function nextQuestion() {
